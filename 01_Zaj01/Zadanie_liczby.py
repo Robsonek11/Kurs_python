@@ -1,3 +1,4 @@
+#Zad2
 spalanie = float(input('Podaj spalnaie Twojego samochodu? (w litrach na 100km) '))
 cena = float(input('Podaj cenę paliwa? (w PLN) '))
 dystans = float(input('Podaj dystans jaki przejechałeś? (w kilometrach) '))
