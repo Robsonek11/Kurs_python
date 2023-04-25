@@ -31,8 +31,9 @@ txt = 'book'
 print(" ".join(txt))
 print(len(txt))
 #Zad5
-tekst = str(input('Podaj tekst? '))
-
+palidrom = str(input('Podaj swój wyraz zdanie'))
+print(palidrom)
+print(palidrom[::-1])
 
 #Zad6
 txt = "Beautiful is better than ugly.\n Explicit is better than implicit.Simple is better than complex.\n Complex is better than complicated. Flat is better than nested. \nSparse is better than dense. \nReadability counts. Special cases aren\'t special enough to break the rules.Although practicality beats purity. \nErrors should never pass silently. \nUnless explicitly silenced. In the face of ambiguity, refuse the temptation to guess.\nThere should be one-- and preferably only one --obvious way to do it.\nAlthough that way may not be obvious at first unless you're Dutch.\nNow is better than never. Although never is often better than *right* now. If the implementation is hard to explain, it\'s a bad idea.\nIf the implementation is easy to explain, it may be a good idea.Namespaces are one honking great idea -- let\"s do more of those!"
