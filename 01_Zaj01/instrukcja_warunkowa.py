@@ -1,4 +1,4 @@
-season = input ("Podaj porę roku ->").lower()
+gitseason = input ("Podaj porę roku ->").lower()
 if season == 'wiosna':
 
     print('zasadź rośliny')
