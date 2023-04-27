@@ -34,4 +34,4 @@ else:
     silnia = 1
     for i in range(1,k+1):
         silnia = silnia * i
-        print(silnia)
+       rint(silnia)
