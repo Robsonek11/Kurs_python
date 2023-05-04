@@ -59,30 +59,6 @@ else:
         print('Elementy środkowe', tab[int(len(tab) / 2 - 1)], "i", tab[int(len(tab) / 2)], 'są takie same')
     else:
         print('Elementy środkowe', tab[int(len(tab) / 2 - 1)], "i", tab[int(len(tab) / 2)], 'nie są takie same')
-#Zad5
-people = [
-    ['Dorota', 'Wellman', 'dziennikarka'],
-    ['Adam', 'Małysz', 'sportowiec'],
-    ['Robert', 'Lewandowski', 'piłkarz'],
-    ['Krystyna', 'Janda', 'aktorka']
-]
-
-# for row in people:
-#     # print(row[0], row[1], '-', row[2])
-#     print(" - ".join(row))
-
-print('---------')
-
-
-for person in people:
-    for id, elem in enumerate(person):
-        if id == 1:
-            print(elem, end=" - ")
-        else:
-            print(elem, end=" ")
-    print()
-
-
 
 # 5▹ Utwórz “na sztywno” 2-wymiarową tablicę, tak, by kolejne wiersze zawierały dane osób, natomiast w kolumnach będzie znajdować się imię, nazwisko, zawód, np:
 
