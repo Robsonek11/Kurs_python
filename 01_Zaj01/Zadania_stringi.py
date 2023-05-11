@@ -1,4 +1,4 @@
-#Zad2
+ #Zad2
 s1 = 'Hello'
 s2 = 'World'
 s3 = s1[:3] + s2 + s1[3:5:1]

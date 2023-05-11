@@ -1,4 +1,6 @@
-liczba = float(input('Podaj liczbę?'))
-print ( 'wynik', liczba / 2)
-print (liczba % 2 == 0)
-print(liczba % 2 == 0 < True)
+txt ='tworzełancuch'
+i=0
+x = len(txt)
+for i in range(x):
+    a = txt[i]
+    print(a)

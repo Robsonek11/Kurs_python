@@ -89,6 +89,17 @@ for i in range(dl):
         number[i+1]= temp
         tab2.append(number[i])
 print(tab2)
+#14
+
+#15
+a=0
+for i in range(1, 101):
+    if i % 2 == 0:
+        i += i
+        a = a + i
+        if a/2 % 3 == 0:
+            print(f'Suma wszystkich liczb parzystych wynosi dla kroku {i/4}, wynosi {a/2} i jest podzielna przez 3')
+print(f'Suma wszystkich liczb parzystych wynosi {a/2}')
 
 # 16.	Napisz program, który stworzy listę zawierającą 10 liczb losowych z zakresu od 1 do 100 (skorzystaj z modułu random) i
 # wyświetla tylko te, które są mniejsze od 50.
