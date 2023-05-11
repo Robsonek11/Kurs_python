@@ -1,0 +1,15 @@
+quote = '„Honesty is the first chapter in the book of wisdom."'
+# print(len(quote))
+# print(quote[45:51])
+# print(quote[45:])
+lenght = int(len(quote)/2)
+# print(quote[:lenght])
+# print(quote[-2:-1])
+# print(quote[lenght::3])
+# print(quote[1:53:2])
+print(quote.split())
+print(" {} {} {} {} {} {} {} {} {} {} ".format('Honesty', 'is', 'the', 'first', 'chapter', 'in', 'the', 'book', 'of', 'wisdom.'))
+print(" {9} {8} {7} {6} {5} {4} {3} {2} {1} {0}".format('Honesty', 'is', 'the', 'first', 'chapter', 'in', 'the', 'book', 'of', 'wisdom.'))
+
+#print(wyświetl cąły tekst odwrotnie)
+print(quote.replace('wisdom', 'friendship'))
