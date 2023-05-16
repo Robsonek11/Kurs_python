@@ -196,3 +196,102 @@ main()
 
 # print(get_computer_number())
 # print((get_user_number()))
+
+#Zad 8 i 9
+my_dict = {
+    'marka':'',
+    'model':'',
+    'rocznik':'',
+}
+def dane():
+    pd_marka = input('Podaj markę samochodu ')
+    pd_model = input('Podaj markę samochodu ')
+    pd_rocznik =input('Podaj rok produkcji samochodu ')
+    my_dict['marka'] = pd_marka
+    my_dict['model'] = pd_model
+    my_dict['rocznik'] = pd_rocznik
+
+def spr():
+    if int(my_dict['rocznik']) <1998:
+        print(f"Gratulacje! Twój samochód {my_dict['marka']} może być zarejestrowany jako zabytek.")
+    else:
+        print(f" Twój samochód {my_dict['marka']} jest jeszcze zbyt młody.")
+
+
+def main():
+    while True:
+        dane()
+        spr()
+        num=input('chcesz sprawdzić jeszcze raz [T/N]')
+        if num.upper() == 'N':
+            break
+        else:
+            my_dict['czy_orginalny'] =''
+            print(my_dict)
+            number = input('Czy twój samochód jest orginalny w 75%? [Yes/No]')
+            if number.upper() == 'Y':
+                my_dict['czy_orginalny'] = True
+                print(f" Gratulacje! Twój samochód {my_dict['marka']} może być zarejestrowany jako zabytek.",
+                my_dict)
+            else:
+                my_dict['czy_orginalny'] = False
+                print(f"Twój samochód {my_dict['marka']} jest jeszcze zbyt młody", my_dict)
+
+
+
+main()
+
+
+#zad 10 wisielec
+fail_guess = 0
+
+
+import random
+word_list = ['wakacje', 'plaża', 'telefon', 'komputer', 'telewizor', 'łazienka']
+
+def word_los(word_list):
+    word = random.choice(word_list)
+    return word
+
+
+
+
+
+def wys(word):
+    word_guess = ["_"] * len(word)
+    print(word_guess)
+    return(word_guess)
+
+def spr(word, word_guess):
+    fail_guess = 0
+    while fail_guess < 10:
+        user_guess = str(input("Podaj litere: ")).upper()
+        if user_guess in word:
+            print("Bardzo dobrze!")
+            pozycja = []
+            for i in range(len(word)):
+                if word[i] == user_guess:
+                    pozycja.append(i)
+            for i in pozycja:
+                word_guess[i] = word[i]
+            print(word_guess)
+        else:
+            print("Spróbuj jeszcze raz")
+            fail_guess += 1
+            print(word_guess)
+            print(f"Nie ma {user_guess} w szukanym słowie. Pozostało Ci {10-fail_guess} prób")
+        if word == word_guess:
+            print('Wspaniale odgadłeś haslo')
+            for i in word_guess:
+                word = i
+                print(word, end="",sep="")
+            break
+
+def main():
+    word = word_los(word_list).upper()
+    word = list(word)
+    word_guess = wys(word)
+    spr(word, word_guess)
+
+
+main()
