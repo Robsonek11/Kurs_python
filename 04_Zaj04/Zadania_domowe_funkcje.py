@@ -1,3 +1,39 @@
+# Zad2▹ Napisać funkcję, która sprawdza czy liczba jest parzysta.
+def even(num):
+    if num % 2 == 0:
+        num = 'parzysta'
+        return num
+    if num % 2 !=0:
+        num = 'nieparzysta'
+        return num
+num = int(input("Podaj liczbe "))
+
+print(f" Twoja liczba jest {even(num)}")
+
+
+
+# Zad4▹ Napisać funkcję, która wypisze wszystkie parzyste z przekazanej listy elementów (wykorzystać funkcje z pkt 2)
+def even(arr1):
+
+    for i in arr:
+        if int(i) % 2 == 0:
+            arr1.append(i)
+    return arr1
+
+
+
+
+
+arr = []
+num = int(input("ile elementów chcesz podać ->"))
+
+for _ in range(num):
+    item = input("Podaj element, który chcesz dorzucic do listy1 ->")
+    arr.append(item)
+
+
+
+
 #zad1
 # korzystaj ze swojego kodu bmi.py. Rozbij liczenie bmi na funkcję obliczającą bmi na podstawie danych użytkownika oraz zwracającą
 # odpowiednią wartość (niedowaga, waga normalna, nadwaga, otyłość) w zależności od otrzymanego parametru.
@@ -194,8 +230,114 @@ def main():
 main()
 
 
-# print(get_computer_number())
-# print((get_user_number()))
+
+
+# Zad6 Napisz grę kamień-papier-nożyce tak, aby korzystać z funkcji.
+
+# słownik wygrany: przegrany
+
+import random
+slownik ={
+    'p' : 'k',
+    'k' : 'n',
+    'n' : 'p'
+}
+print(slownik)
+poprawne_odpowiedzi =['p', 'k', 'n']
+print(poprawne_odpowiedzi)
+
+def los_komputer():
+    los = random.choice(poprawne_odpowiedzi)
+    return los
+
+print(los_komputer())
+
+def odpowiedz_uzytkowanika():
+    while True:
+        odp = input ("""Podaj 
+        p -> papier
+        k -> kamien
+        n -> nozyce\n
+        twoja odpowiedz --> """)
+        if odp in poprawne_odpowiedzi:
+            break
+
+        else:
+            print('Podaj poprawną odpoweidz')
+    return odp
+def wynik(komp, uzytk):
+    if komp == uzytk:
+        print('->Remis<-')
+    elif komp in slownik[uzytk]:
+        print('->Uzytkownik wygrał<-')
+    else:
+        print('->Komputer wygrał<-')
+def main():
+    while True:
+        komp = los_komputer()
+        uzytk = odpowiedz_uzytkowanika()
+        wynik(komp, uzytk)
+        wybor = input("""Spróbuj jeszcze raz T/N
+        Twój wybór -> """)
+        if wybor.upper() == 'N':
+            break
+main()
+# Zad7▹ Napisz program, który na podstawie numeru karty odpowie czy ma doczynienia z Visą, MasterCard, a może AmericanExpress.
+
+# Co wiemy o tych numerach tych kart?
+#
+#     All Visa card numbers start with a 4. New cards have 16 digits. Old cards have 13.
+#
+#     MasterCard numbers either start with the numbers 51 through 55 or with the numbers 2221 through 2720. All have 16 digits.
+#
+#     American Express card numbers start with 34 or 37 and have 15 digits.
+
+
+def spr_numer():
+    while True:
+        karta = input('Podaj numer karty...')
+        karta = karta.replace(" ","")
+        karta = karta.replace("-", "")
+        if karta.isdigit()==True:
+            print('To moze byc karta')
+            break
+
+        else:
+            print('To nie jest karta')
+            print('--->próbuj jeszcze raz<---')
+    return karta
+
+def czy_visa(numer_karty):
+    if numer_karty[0] == '4' and (len(numer_karty) == 16 or len(numer_karty) == 13):
+        return True
+    else:
+        return False
+def czy_master(numer_karty):
+    if int(numer_karty[0:2]) in range(51, 56) or int(numer_karty [0:4]) in range(2221, 2721):
+        return True
+    else:
+        return False
+
+def czy_american(numer_karty):
+    if numer_karty[0:2] == ['34',37] and len(numer_karty) == 15:
+        return True
+    else:
+        return False
+numer = spr_numer()
+print('7wi45yqc.bmp :', numer)
+
+if czy_visa(numer) == True:
+    print('To jest karta Visa')
+elif czy_master(numer) == True:
+    print('To jest karta Master')
+elif czy_american(numer) == True:
+    print('To jest karta American')
+else:
+    print('Nie znam tej karty')
+
+print('🙈 🙈 🙈 🙈 🙈 🙈 🙈 🙈 🙈 🙈 🙈 🙈 🙈 🙈 🙈 🙈 🙈 🙈')
+# # spr_kart(number)
+# spr_kart(5527356928767069)
 
 #Zad 8 i 9
 my_dict = {

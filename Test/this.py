@@ -1,13 +1,20 @@
-# Zad10▹ Użytkownik podaje dowolną liczbę N. Napisz, który wygeneruje słownik, wg zasady, że każdej liczbie
-# przyporządkowany jest jej kwadrat (n : n * n).
-#
-# Załóżmy, że użytkownik podał N = 8
-#
-# Wynik: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64}
 
+import random
 
-num = int(input('Podaj liczbę '))
-d = {}
-for i in range(1,num+1):
-    d[i] = i *i
-print(d)
+# Generowanie losowych liczb
+random_numbers = [random.randint(10, 20) for _ in range(16)]
+print(random_numbers)
+# Wyświetlanie tylko liczb powtarzających się
+repeated_numbers = set()
+unique_numbers = set()
+
+for num in random_numbers:
+    if num in unique_numbers:
+        repeated_numbers.add(num)
+    else:
+        unique_numbers.add(num)
+
+print("Liczby powtarzające się na liście to:")
+
+for num in repeated_numbers:
+    print(num)
