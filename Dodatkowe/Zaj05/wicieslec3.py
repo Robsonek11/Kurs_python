@@ -36,10 +36,8 @@ def spr(word, word_guess):
             print(word_guess)
             print(f"Nie ma {user_guess} w szukanym słowie. Pozostało Ci {10-fail_guess} prób")
         if word == word_guess:
-            print('Wspaniale odgadłeś haslo')
-            for i in word_guess:
-                word = i
-                print(word, end="",sep="")
+            print("Wspaniale odgadłeś haslo, ")
+            print("".join(word_guess))
             break
 
 def main():
