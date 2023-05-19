@@ -112,16 +112,60 @@ for klucz, wartosc in d.items():
 
 
 
-
-
-
 # Zad9▹ 5 użytkowników poproś o podanie 4 przedmiotów szkolnych, sprawdź czy przedmioty powtarzają się na listach.
 # Wyświetl najpopularniejszy przedmiot. (Uwzględnij fakt, że użytkownicy mogą zapisać przedmioty małymi,
 # drukowanymi lub zaczynając od dużej litery)
-#
+tablica1 = []
+tablica2 = []
+tablica3 = []
+tablica4 = []
+tablica5 = []
+for _ in range(1,5):
+    item1 = input(f"Użytkowniku 1. Podaj {_} przedmiot szkolny, który chcesz dodać do listy -> ")
+    tablica1.append(item1.upper())
+for _ in range(1,5):
+    item2 = input(f"Użytkowniku 2. Podaj {_} przedmiot szkolny, który chcesz dodać do listy -> ")
+    tablica2.append(item2.upper())
+for _ in range(1,5):
+    item3 = input(f"Użytkowniku 3. Podaj {_} przedmiot szkolny, który chcesz dodać do listy -> ")
+    tablica3.append(item3.upper())
+for _ in range(1, 5):
+    item4 = input(f"Użytkowniku 4. Podaj {_} przedmiot szkolny, który chcesz dodać do listy -> ")
+    tablica4.append(item4.upper())
+for _ in range(1, 5):
+    item5 = input(f"Użytkowniku 5. Podaj {_} przedmiot szkolny, który chcesz dodać do listy -> ")
+    tablica5.append(item5.upper())
+
+
+
+
+
+tablica = tablica1 + tablica2 + tablica3 + tablica4 +tablica5
+
+
+d = dict()
+for j in tablica:
+    if j in d:
+        d[j] += 1
+    else:
+        d[j] = 1
+
+print(d)
+
+
+items = d.items()
+print(sorted(items, key=lambda x: x[1], reverse = True))
+
 # Zad10▹ Użytkownik podaje dowolną liczbę N. Napisz, który wygeneruje słownik, wg zasady, że każdej liczbie
 # przyporządkowany jest jej kwadrat (n : n * n).
 #
 # Załóżmy, że użytkownik podał N = 8
 #
 # Wynik: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64}
+
+
+num = int(input('Podaj liczbę '))
+d = {}
+for i in range(1,num+1):
+    d[i] = i *i
+print(d)
