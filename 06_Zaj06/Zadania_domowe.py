@@ -3,7 +3,7 @@
 # Np. można wyświetlić tak:
 import random
 def plik():
-    nazwa = input('Podaj nazwę pliku ')
+    nazwa = input('Podaj nazwę pliku (quote)')
     return nazwa
 def haslo_dnia(nazwa):
 
@@ -36,7 +36,7 @@ print(os.path.getsize("example1.txt"))
 #Zad3
 #3▹ Wyświetl tylko 5 pierwszych linii
 def get_content():
-    filename = input('Podaj nazwe pliku (bez rozszerzenia txt)')
+    filename = input('Podaj nazwe pliku (bez rozszerzenia txt(cytaty))')
     with open(f'{filename}.txt', encoding='utf-8') as fopen:
         content = fopen.readlines()
 
@@ -184,3 +184,121 @@ main()
 
 
 
+
+# 7▹ Wisielec.
+#  Utwórz plik zawierający listę słów wg.
+# kategorii np. zwierzęta, owoce etc. (jedna linia po przecinku)
+#
+# Poproś użytkownika o
+# podanie kategorii przed rozpoczęciemy gry.
+#  1 - zwierzeta
+#  2 - owoce
+#  3 - warzywa
+#
+#  Następny wczytaj listę haseł do programu, wylosuj jedno hasło z listy.
+#  - wczytujemy linijkę 0 z pliku i dzielimy  przecinkiem,
+#  -powstanie lista elementów -> wylosowac z niej 1 slowo i przedstawic
+#   jak wisielca ---- + info o ilosci życ
+#  -puytac o literkę
+#  - jak zgadie to wstawic a jak nei odjąc zycie, jak wykozysta zycia to game over
+#
+#
+#  Rozgrywka powinna być maksymalnie intuicyjna
+
+
+fail_guess = 0
+
+
+import random
+
+
+
+def choose_category():
+    categories = {
+        1:"zwierzęta",
+        2:'owoce',
+        3:'warzywa'
+    }
+    print('Wybierz jedną z kategorii: ')
+    for category_num, category_name in categories.items():
+        print(f'{category_num}.kategoria {category_name}')
+
+    while True:
+        choice = int(input('Podaj nr kategorii--> '))
+        if choice in categories:
+            return categories[choice]
+        else:
+            print('Podaj poprawny numer kategorii--> ')
+
+
+
+
+
+def choose_word(category):
+    words = {
+        'zwierzęta': ['kot', 'krowa', 'krokodyl','pies'],
+        'owoce': ['jabłko', 'truskawka', 'borówka', 'ananas'],
+        'warzywa': ['kalafior', 'burak', 'marchweka','seler' ]
+    }
+
+    return random.choice(words[category])
+
+
+
+
+def display(word):
+    word_guess = ["_"] * len(word)
+    print(word_guess)
+    return(word_guess)
+
+def spr(word, word_guess, word_2):
+    fail_guess = 0
+    while fail_guess < 10:
+        word1=""
+        user_guess = str(input("Podaj litere: ")).lower()
+        if user_guess in word:
+            print("Bardzo dobrze!")
+            pozytion = []
+            for i in range(len(word)):
+                if word[i] == user_guess:
+                    pozytion.append(i)
+            for i in pozytion:
+                word_guess[i] = word[i]
+            print(word_guess)
+        else:
+            print("Spróbuj jeszcze raz")
+            fail_guess += 1
+            print(word_guess)
+            print(f"Nie ma {user_guess} w szukanym słowie. Pozostało Ci {10-fail_guess} prób")
+        if word_2 == word_guess:
+            print("Wspaniale odgadłeś haslo, ")
+            print("".join(word_guess))
+            break
+        answer = str(input("Czy chcesz odgadnąć hasło [T/N]: ")).upper()
+        if answer == "T":
+            word1 = input('Podaj hasło: ').lower()
+            if word1 == word_2:
+                print("Wspaniale odgadłeś haslo, ")
+                print("".join(word))
+                break
+            else:
+                fail_guess += 1
+                print(f"{word1} nie jest szukanym słowiem. Pozostało Ci {10 - fail_guess} prób")
+
+                print(word_guess)
+
+
+
+def main():
+    category = choose_category()
+    print("Gra wisielec bez wisielca")
+
+    word = choose_word(category)
+    print(f'hasło z kategorii {category} to: ')
+    word_2 = word
+    word_guess = display(word)
+    spr(word, word_guess, word_2)
+
+
+
+main()

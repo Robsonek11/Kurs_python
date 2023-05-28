@@ -1,74 +1,101 @@
-# Rozpoznawanie kart. Utwórz plik zawierający numery
-# kart kredytowych. Sprawdź dla każdej kart jej typ.
-# Podziel kart do plików wg typów
-# np. visa.txt, mastercard.txt, americanexpress.txt.
+# 7▹ Wisielec.
+#  Utwórz plik zawierający listę słów wg.
+# kategorii np. zwierzęta, owoce etc. (jedna linia po przecinku)
+#
+# Poproś użytkownika o
+# podanie kategorii przed rozpoczęciemy gry.
+#  1 - zwierzeta
+#  2 - owoce
+#  3 - warzywa
+#
+#  Następny wczytaj listę haseł do programu, wylosuj jedno hasło z listy.
+#  - wczytujemy linijkę 0 z pliku i dzielimy  przecinkiem,
+#  -powstanie lista elementów -> wylosowac z niej 1 slowo i przedstawic
+#   jak wisielca ---- + info o ilosci życ
+#  -puytac o literkę
+#  - jak zgadie to wstawic a jak nei odjąc zycie, jak wykozysta zycia to game over
+#
+#
+#  Rozgrywka powinna być maksymalnie intuicyjna
 
 
-def get_card_number():
-    with open('visa.txt', 'r') as visa, open('mastercard.txt', 'r') as mastercard, open('americanexpres.txt','r') as americanexpress:
-        lines = (visa or mastercard or americanexpress)
-        print(lines)
-        for number in visa.readlines() and mastercard.readlines() and americanexpress.readlines():
-            card_nr = number
-            card_nr = card_nr.replace(" ", "")
-            card_nr = card_nr.replace("-", "")
-            print(card_nr)
+import random
 
-        return card_nr
+def choose_category():
+    categories = {
+        1:"zwierzęta",
+        2:'owoce',
+        3:'warzywa'
+    }
+    print('Wybierz jedną z kategorii: ')
+    for category_num, category_name in categories.items():
+        print(f'{category_num}.kategoria {category_name}')
 
-
-def is_visa(card_num):
-    """Function that checks visa numbers"""
-    return card_num[0] == '4' and (len(card_num) == 16 or len(card_num) == 13)
-    # if card_num[0] == '4' and (len(card_num) == 16 or len(card_num) == 13):
-    #     return True
-    # else:
-    #     return False
+    while True:
+        choice = int(input('Podaj nr kategorii--> '))
+        if choice in categories:
+            return categories[choice]
+        else:
+            print('Podaj poprawny numer kategorii--> ')
 
 
-def is_mastercard(card_num):
-    """Function that checks mastercard numbers"""
-    start_condition = int(card_num[0:2]) in range(51, 56) or int(card_num[0:4]) in range(2221, 2721)
-
-    return len(card_num) == 16 and start_condition
-    # if len(card_num) == 16 and start_condition:
-    #     return True
-    # else:
-    #     return False
 
 
-def is_amex(card_num):
-    """Function that checks amex numbers"""
-    return len(card_num) == 15 and card_num[0:2] in ('34', '37')
-    # if len(card_num) == 15 and card_num[0:2] in ('34', '37'):
-    #     return True
-    # else:
-    #     return False
+
+def choose_word(category):
+    words = {
+        'zwierzęta': ['kot', 'krowa', 'krokodyl','pies'],
+        'owoce': ['jabłko', 'truskawka', 'borówka', 'ananas'],
+        'warzywa': ['kalafior', 'burak', 'marchweka','seler' ]
+    }
+
+    return random.choice(words[category])
+
+def game(word):
+    guessed_letters = []
+    trials = 6
+    hidden_word = "_ " * len(word)
+
+    while trials > 0:
+        print(f"\n{hidden_word}")
+        print(f"Pozostało Ci : {trials} żyć.")
+        letter = input("Podaj literę: ").lower()
+
+        if letter in guessed_letters:
+            print("Ta litera została już była.")
+            continue
+
+        guessed_letters.append(letter)
+
+        if letter in word:
+            new_hidden_word = ""
+            for i in range(len(word)):
+                if word[i] == letter:
+                    new_hidden_word += letter
+                else:
+                    new_hidden_word += hidden_word[i]
+            hidden_word = new_hidden_word
+
+            if hidden_word == word:
+                print("Brawo, zgadłeś!")
+                break
+        else:
+            print("Zła litera.")
+            trials -= 1
+
+            if trials == 0:
+                print("Przegrałeś! Hasło to:", word)
+                break
+
 
 
 def main():
-    number = get_card_number()
-    print('💳 :', number)
-
-    if is_visa(number):
-        print("This is Visa card number")
-    elif is_mastercard(number):
-        print("This is MasterCard card number")
-    elif is_amex(number):
-        print("This is AmericanExpress card number")
-    else:
-        print("Unknown card number")
+    print("Gra wisielec bez wisielca")
+    category = choose_category()
+    word = choose_word(category)
+    print(f'hasło z kategorii {category} to: ')
+    game(word)
 
 
 
 main()
-
-
-
-
-
-
-
-
-
-
