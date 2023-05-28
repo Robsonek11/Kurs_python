@@ -1,20 +1,74 @@
+# Rozpoznawanie kart. Utwórz plik zawierający numery
+# kart kredytowych. Sprawdź dla każdej kart jej typ.
+# Podziel kart do plików wg typów
+# np. visa.txt, mastercard.txt, americanexpress.txt.
 
-import random
 
-# Generowanie losowych liczb
-random_numbers = [random.randint(10, 20) for _ in range(16)]
-print(random_numbers)
-# Wyświetlanie tylko liczb powtarzających się
-repeated_numbers = set()
-unique_numbers = set()
+def get_card_number():
+    with open('visa.txt', 'r') as visa, open('mastercard.txt', 'r') as mastercard, open('americanexpres.txt','r') as americanexpress:
+        lines = (visa or mastercard or americanexpress)
+        print(lines)
+        for number in visa.readlines() and mastercard.readlines() and americanexpress.readlines():
+            card_nr = number
+            card_nr = card_nr.replace(" ", "")
+            card_nr = card_nr.replace("-", "")
+            print(card_nr)
 
-for num in random_numbers:
-    if num in unique_numbers:
-        repeated_numbers.add(num)
+        return card_nr
+
+
+def is_visa(card_num):
+    """Function that checks visa numbers"""
+    return card_num[0] == '4' and (len(card_num) == 16 or len(card_num) == 13)
+    # if card_num[0] == '4' and (len(card_num) == 16 or len(card_num) == 13):
+    #     return True
+    # else:
+    #     return False
+
+
+def is_mastercard(card_num):
+    """Function that checks mastercard numbers"""
+    start_condition = int(card_num[0:2]) in range(51, 56) or int(card_num[0:4]) in range(2221, 2721)
+
+    return len(card_num) == 16 and start_condition
+    # if len(card_num) == 16 and start_condition:
+    #     return True
+    # else:
+    #     return False
+
+
+def is_amex(card_num):
+    """Function that checks amex numbers"""
+    return len(card_num) == 15 and card_num[0:2] in ('34', '37')
+    # if len(card_num) == 15 and card_num[0:2] in ('34', '37'):
+    #     return True
+    # else:
+    #     return False
+
+
+def main():
+    number = get_card_number()
+    print('💳 :', number)
+
+    if is_visa(number):
+        print("This is Visa card number")
+    elif is_mastercard(number):
+        print("This is MasterCard card number")
+    elif is_amex(number):
+        print("This is AmericanExpress card number")
     else:
-        unique_numbers.add(num)
+        print("Unknown card number")
 
-print("Liczby powtarzające się na liście to:")
 
-for num in repeated_numbers:
-    print(num)
+
+main()
+
+
+
+
+
+
+
+
+
+
