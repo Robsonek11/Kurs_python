@@ -1,16 +1,8 @@
-def circle(r):
-    area_circle = 3.14 * r ** 2
-    return area_circle
+def count_square_area(a):
+    return a * a
 
-def square(a):
-    area_square = a * a
-    return area_square
+def count_circle_area(r):
+    return 3.14 * r ** 2
 
-
-def triangle(a, h):
-    area_triangle = 0.5 * a * h
-    return area_triangle
-
-def rectangle (a, b):
-    area_rectangle = a * b
-    return area_rectangle
+def count_rectangle_area(a, b):
+    return a * b

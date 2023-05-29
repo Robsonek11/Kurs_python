@@ -124,7 +124,8 @@ def main():
 
 
 def get_card_number():
-    with open('visa.txt', 'r') as visa, open('mastercard.txt', 'r') as mastercard, open('americanexpres.txt','r') as americanexpress:
+    with open('06.karty/visa.txt', 'r') as visa, open('06.karty/mastercard.txt', 'r') as mastercard, open(
+            '06.karty/americanexpres.txt', 'r') as americanexpress:
         lines = (visa or mastercard or americanexpress)
         print(lines)
         for number in visa.readlines() and mastercard.readlines() and americanexpress.readlines():
