@@ -8,18 +8,18 @@ import random
 def sekwencja(word):
     max_sekwencja = ''
     aktualna_sekwencja = ''
-    poprzedni_znak = None
-    for znak in word:
-        if znak == poprzedni_znak:
-            aktualna_sekwencja = aktualna_sekwencja + znak
+    poprzednia_litera = None
+    for litera in word:
+        if litera == poprzednia_litera:
+            aktualna_sekwencja = aktualna_sekwencja + litera
 
         else:
 
             if len(aktualna_sekwencja) > len(max_sekwencja):
 
                 max_sekwencja = aktualna_sekwencja
-            aktualna_sekwencja = znak
-            poprzedni_znak = znak
+            aktualna_sekwencja = litera
+            poprzednia_litera = litera
 
     if len(aktualna_sekwencja) > len (max_sekwencja):
 
