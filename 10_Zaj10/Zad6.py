@@ -16,11 +16,13 @@ class pracownik:
 
   firma = 'Love Python Company'
 
-  def __init__(self, imie, nazwisko, stanowisko,  staz):
+  def __init__(self, imie, nazwisko, stanowisko,  staz, wyplata, student):
     self.imie = imie
     self.nazwisko = nazwisko
     self.stanowisko = stanowisko
     self.staz = staz
+    self.wyplata = wyplata
+    self.student = student
 
   def email(self):
       firma = 'Love Python Company'
@@ -40,25 +42,41 @@ class pracownik:
   def status_student (self, student ):
         return  print(student, 'is', bool(student))
 
-  def wyplata (self, kwota):
-      if kwota > 12000:
-          kwota = kwota*0.66
-          return print(f' wypłata {kwota}')
+  def podwyzka(self, procent):
+
+      if self.wyplata > 12000:
+          self.wyplata = self.wyplata + self.wyplata * (procent/100)
+          return print(f'wypłata po rocznej podwyżce wyniesie: {self.wyplata}')
       else:
-          kwota = kwota * 0.87
-          return print(f' wypłata {kwota}')
+          self.wyplata = self.wyplata + self.wyplata * (procent/100)
+          return print(f'wypłata po rocznej podwyżce wyniesie: {self.wyplata}')
 
-  def podwyzka (self, kwota):
-      if kwota > 12000:
-          kwota = kwota*0.06
-          return print(f' podwyżka {kwota}')
+  def obl_podatku(self):
+      if self.student:
+          return 0
+      elif self.wyplata > 12000:
+          return self.wyplata * 0.33
       else:
-          kwota = kwota * 0.09
-          return print(f' podwyżka {kwota}')
+          return self.wyplata *0.1
+
+  def skladka_zdrowotna(self):
+      if self.student:
+          return 0
+      else:
+          return self.wyplata * 0.01
 
 
-pracownik1 = pracownik('Michał', 'Rozum', 'magazynier', 5)
 
-print(pracownik1.email())
-print(pracownik1.status_student(0))
-print(pracownik1.wyplata(14000))
+
+
+def main():
+    pracownik1 = pracownik('Michał', 'Rozum', 'magazynier',4, 10000, True)
+    pracownik1.podwyzka(5)
+    print(pracownik1.email())
+    podatek= pracownik1.obl_podatku()
+    print(f'podatek wyniesie: {podatek}')
+    skladka = pracownik1.skladka_zdrowotna()
+    print(f'składka zdrowotna wyniesie: {skladka}')
+
+if __name__ == '__main__':
+    main()
