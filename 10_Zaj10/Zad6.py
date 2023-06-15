@@ -52,25 +52,28 @@ class pracownik:
           return print(f'wypłata po rocznej podwyżce wyniesie: {self.wyplata}')
 
   def obl_podatku(self):
+      wyp=0
       if self.student:
           return 0
       elif self.wyplata > 12000:
-          return self.wyplata * 0.33
+          wyp = self.wyplata * 0.33
+          return wyp
       else:
-          return self.wyplata *0.1
+          wyp = self.wyplata * 0.1
+          return wyp
 
   def skladka_zdrowotna(self):
       if self.student:
           return 0
       else:
-          return self.wyplata * 0.01
+          return self.wyplata * 0.061
 
 
 
 
 
 def main():
-    pracownik1 = pracownik('Michał', 'Rozum', 'magazynier',4, 10000, True)
+    pracownik1 = pracownik('Michał', 'Rozum', 'magazynier',4, 11500, False)
     pracownik1.podwyzka(5)
     print(pracownik1.email())
     podatek= pracownik1.obl_podatku()
